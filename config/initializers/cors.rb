@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'localhost:8000', '127.0.0.1:8000', 'http://host.docker.internal:3000/posts'
+    origins 'localhost:8000', '127.0.0.1:8000', 'http://host.docker.internal:3000/', 'https://sound-hit-back.fly.dev/', 'https://sound-hit.vercel.app'
 
     resource "*",
       headers: :any,
