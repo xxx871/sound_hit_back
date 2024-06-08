@@ -8,6 +8,11 @@ Rails.application.routes.draw do
       namespace :auth do
         resources :sessions, only: [:index]
       end
+
+      resources :notes, only: [:index]
+      resources :genders, only: [:index]
+      resources :difficulties, only: [:index]
+      resources :modes, only: [:index]
     end
   end
 end
