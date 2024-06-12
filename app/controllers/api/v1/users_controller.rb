@@ -30,6 +30,7 @@ module Api
           id: user.id,
           name: user.name,
           email: user.email,
+          gender_id: user.gender_id,
           gender: user.gender&.name,
           user_high_note: note_to_json(user.high_note),
           user_low_note: note_to_json(user.low_note),
