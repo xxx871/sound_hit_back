@@ -20,6 +20,7 @@ Rails.application.routes.draw do
       end
       resources :difficulties, only: [:index]
       resources :modes, only: [:index]
+      put 'scores/update', to: 'scores#update'
     end
   end
 end
