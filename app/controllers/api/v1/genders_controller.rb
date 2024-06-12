@@ -5,6 +5,14 @@ module Api
         genders = Gender.all
         render json: genders
       end
+
+      def notes_range
+        gender_id = params[:id]
+        low_note = GenderLowNote.find_by(gender_id: gender_id).note
+        high_note = GenderHighNote.find_by(gender_id: gender_id).note
+        notes = Note.where(frequency: low_note.frequency..high_note.frequency)
+        render json: notes
+      end
     end
   end
 end
