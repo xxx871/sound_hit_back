@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       resources :difficulties, only: [:index]
       resources :modes, only: [:index]
       put 'scores/update', to: 'scores#update'
+      get 'scores/ranking', to: 'scores#ranking'
     end
   end
 end
