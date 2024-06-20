@@ -7,6 +7,8 @@ DeviseTokenAuth.setup do |config|
   # each request.
   config.change_headers_on_each_request = false
 
+  config.require_client_password_reset_token = true
+
   # By default, users will need to re-authenticate after 2 weeks. This setting
   # determines how long tokens will remain valid after they are issued.
   config.token_lifespan = 1.months
@@ -63,4 +65,5 @@ DeviseTokenAuth.setup do |config|
   # devise confirmable module. If you want to use devise confirmable module and
   # send email, set it to true. (This is a setting for compatibility)
   # config.send_confirmation_email = true
+  config.default_password_reset_url = "#{ENV['FRONT_REDIRECT_URL']}/password/change"
 end

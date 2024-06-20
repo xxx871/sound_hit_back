@@ -65,4 +65,18 @@ Rails.application.configure do
   config.hosts << "api"
   config.hosts << "host.docker.internal"
   config.hosts << "sound-hit-back.fly.dev"
+
+  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.perform_deliveries = true
+  Rails.application.routes.default_url_options[:host] = ENV['FRONT_HOST']
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'localhost', 
+    user_name: ENV['MAILER_SENDER'],
+    password: ENV['MAILER_PASSWORD'],
+    authentication: 'plain',
+    enable_starttls_auto: true
+  }
 end
