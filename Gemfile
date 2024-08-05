@@ -43,6 +43,11 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'simplecov', require: false
   gem "shoulda-matchers"
+  gem 'rubocop', require: false
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem 'rubocop-factory_bot', require: false
+  gem 'rubocop-rspec_rails', require: false
 end
 
 group :development do
@@ -53,7 +58,7 @@ end
 
 gem "dotenv-rails"
 
-gem "dockerfile-rails", ">= 1.6", :group => :development
+gem "dockerfile-rails", ">= 1.6", group: :development
 
 gem 'devise'
 

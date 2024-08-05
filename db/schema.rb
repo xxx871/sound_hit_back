@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_08_031403) do
+ActiveRecord::Schema[7.0].define(version: 2024_08_05_130906) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_08_031403) do
     t.datetime "updated_at", null: false
     t.index ["note_id"], name: "index_user_high_notes_on_note_id"
     t.index ["user_id", "note_id"], name: "index_user_high_notes_on_user_id_and_note_id", unique: true
-    t.index ["user_id"], name: "index_user_high_notes_on_user_id"
+    t.index ["user_id"], name: "index_user_high_notes_on_user_id", unique: true
   end
 
   create_table "user_low_notes", force: :cascade do |t|
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_08_031403) do
     t.datetime "updated_at", null: false
     t.index ["note_id"], name: "index_user_low_notes_on_note_id"
     t.index ["user_id", "note_id"], name: "index_user_low_notes_on_user_id_and_note_id", unique: true
-    t.index ["user_id"], name: "index_user_low_notes_on_user_id"
+    t.index ["user_id"], name: "index_user_low_notes_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
