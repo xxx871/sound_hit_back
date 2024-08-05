@@ -14,7 +14,7 @@ module Api
         begin
           UpdateUserService.new(@user, user_params).call
           render json: user_json(@user), status: :ok
-        rescue => e
+        rescue StandardError => e
           render json: { errors: e.message }, status: :unprocessable_entity
         end
       end
@@ -34,7 +34,7 @@ module Api
           gender: user.gender&.name,
           user_high_note: note_to_json(user.high_note),
           user_low_note: note_to_json(user.low_note),
-          scores: user.scores.map { |score| { mode: score.mode.name, difficulty: score.difficulty.name, score: score.score } },
+          scores: user.scores.map { |score| { mode: score.mode.name, difficulty: score.difficulty.name, score: score.score } }
         }
       end
 

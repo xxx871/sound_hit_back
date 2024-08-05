@@ -1,4 +1,3 @@
-# app/services/update_user_service.rb
 class UpdateUserService
   def initialize(user, params)
     @user = user
@@ -26,23 +25,23 @@ class UpdateUserService
       raise "指定された音域高が見つかりません" unless @high_note
     end
 
-    if @params[:low_note].present?
-      @low_note = Note.find_by(id: @params[:low_note][:id])
-      raise "指定された音域低が見つかりません" unless @low_note
-    end
+    return if @params[:low_note].blank?
+
+    @low_note = Note.find_by(id: @params[:low_note][:id])
+    raise "指定された音域低が見つかりません" unless @low_note
   end
 
   def validate_notes
-    if @high_note && @low_note && @high_note.frequency < @low_note.frequency
-      raise "音域高は音域低より低くすることはできません"
-    end
+    return unless @high_note && @low_note && @high_note.frequency < @low_note.frequency
+
+    raise "音域高は音域低より低くすることはできません"
   end
 
   def update_gender
-    if @params[:gender].present?
-      gender = Gender.find_by(name: @params[:gender])
-      @user.gender = gender if gender
-    end
+    return if @params[:gender].blank?
+
+    gender = Gender.find_by(name: @params[:gender])
+    @user.gender = gender if gender
   end
 
   def save_notes
@@ -52,11 +51,11 @@ class UpdateUserService
       user_high_note.save!
     end
 
-    if @low_note
-      user_low_note = UserLowNote.find_or_initialize_by(user: @user)
-      user_low_note.note = @low_note
-      user_low_note.save!
-    end
+    return unless @low_note
+
+    user_low_note = UserLowNote.find_or_initialize_by(user: @user)
+    user_low_note.note = @low_note
+    user_low_note.save!
   end
 
   def save_user

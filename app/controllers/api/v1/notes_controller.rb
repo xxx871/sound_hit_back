@@ -1,7 +1,6 @@
 module Api
   module V1
     class NotesController < ApplicationController
-
       def index
         notes = Note.all
         render json: notes
@@ -16,10 +15,7 @@ module Api
           return
         end
 
-        low_frequency = [low_note.frequency, high_note.frequency].min
-        high_frequency = [low_note.frequency, high_note.frequency].max
-      
-        notes = Note.where("frequency >= ? AND frequency <= ?", low_frequency, high_frequency)
+        notes = Note.where(frequency: low_note.frequency..high_note.frequency)
         render json: notes
       end
     end
