@@ -15,7 +15,8 @@ module Api
           return
         end
 
-        notes = Note.where(frequency: low_note.frequency..high_note.frequency)
+        low_frequency, high_frequency = [low_note.frequency, high_note.frequency].minmax
+        notes = Note.where(frequency: low_frequency..high_frequency)
         render json: notes
       end
     end
